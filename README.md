@@ -292,5 +292,247 @@ The finished index.html code and styles.css code should look like the below at t
 	- How will this class be used? We will use this class as a kind of special function. We're going to have our JavaScript dynamically add and remove this class when someone is hovering over the tiles. 
 - At this point all the styles for the home page are complete. We will still need to add some JavaScript for all of it to work and add to it for the about page. For now, however, that is all we will need. 
 
+* * *
+
+**Addig some JavaScript**
+
+We will now head over to the index.html page to add the Javascript. The JavaScript will be added at the very end of the code underneath the closing `</body` tag. 
+- Under the `body` tag you will need to create a `<script>` tag. This tells the HTML script you're writing some JavaScript. 
+- With JavaScript, we're going to select all the portfolio items. 
+- In the `script` tag we will write the following...
+	- `const portfolioItems = document.querySelectorAll('.portfolio-item-wrapper')`. This will find all elements that match the criteria specified. 
+	- Next, we will loop over the items stored in the `portfolioItems` variable. 
+	- To loop over we write
+```
+portfolioItems.forEach('portfolioItem' => {
+	portfolioItem.addEventListener('mouseover', () => {
+		portfolionItem.childNodes[1].classList.add('img-darken')
+```
+- Going through the above loop
+- `forEach()` is a function. What we are saying is we want to run this process for each one of the portfolio items.
+- `portfolioItem` is an iterator variable and will take the value of each of the elements it loops over. - `portfolioItem.addenventListener("mouseover")` - Is used to get the elements whenever the mouse is hovering over a portfolio item. We do this because we want to add the `img-darken` class we created.
+- `portfolionItem.childNodes[1]` A child node is our nested `divs`. We want to grab the element at index 1.
+- `.classList.add('img-darken')` This adds our `image-darken` class to the element. 
+- We then add a JavaScript event listener so the tile doesn't stay dark. 
+
+```
+portfolioItems.forEach(portfolioItem => {
+        portfolioItem.addEventListener('mouseout', () => {
+            portfolioItem.childNodes[1].classList.remove('img-darken');
+        })
+
+    })
+
+```
+
+**index.html at this point**
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Page Title</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="nav-wrapper">
+            <div class="left-side">
+                <div class="nav-link-wrapper">
+                    <a href="index.html">Home</a>
+                </div>
+                <div class="nav-link-wrapper">
+                    <a href="about.html">About</a>
+                </div>
+            </div>
+
+            <div class="right-side">
+                <div class="brand">
+                    <div>HARRY CAVE</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-wrapper">
+            <div class="portfolio-items-wrapper">
+                <div class="portfolio-item-wrapper">
+
+                    <div class="portfolio-img-background" style="background-image:url(images/portfolio2.jpg)"></div>   
+
+                    <div class="img-text-wrapper">
+                        <div class="logo-wrapper">
+                            <img src="images/logos/devcamp.png" alt="">
+                        </div>
+
+                        <div class="subtitle">
+                            This is portfolio item 1
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="portfolio-item-wrapper">
+
+                    <div class="portfolio-img-background" style="background-image:url(images/portfolio3.jpg)"></div>   
+
+                    <div class="img-text-wrapper">
+                        <div class="logo-wrapper">
+                            <img src="images/logos/crondose.png" alt="">
+                        </div>
+
+                        <div class="subtitle">
+                            This is portfolio item 2
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="portfolio-item-wrapper">
+
+                    <div class="portfolio-img-background" style="background-image:url(images/portfolio4.jpg)"></div>   
+
+                    <div class="img-text-wrapper">
+                        <div class="logo-wrapper">
+                            <img src="images/logos/crondose.png" alt="">
+                        </div>
+
+                        <div class="subtitle">
+                            This is portfolio item 3
+                        </div>
+                    </div>
+
+                </div>
+                
+            </div>
+        </div>
+    
+
+    </div>
+                
+</body>
+<script>
+    const portfolioItems = document.querySelectorAll('.portfolio-item-wrapper')
+
+    portfolioItems.forEach(portfolioItem => {
+        portfolioItem.addEventListener('mouseover', () => {
+            portfolioItem.childNodes[1].classList.add('img-darken');
+        
+        })
+    })
+        
+
+    portfolioItems.forEach(portfolioItem => {
+        portfolioItem.addEventListener('mouseout', () => {
+            portfolioItem.childNodes[1].classList.remove('img-darken');
+        })
+
+    })
+</script>
+</html>
+```
+
+**Styles.css at this point**
+```
+/* Master Styles */
+body {
+    margin: 0px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+/* Nav Styles */
+.nav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 38px;
+}
+
+.left-side {
+    display: flex;
+
+}
+.nav-wrapper > .left-side > div {
+    margin-right: 20px;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    
+}
+
+.nav-wrapper {
+    height: 22px;
+    border-bottom: 1px solid transparent;
+    transition: border-bottom 0.5s;
+}
+
+.nav-link-wrapper a {
+    color: #8a8a8a;
+    text-decoration: none;
+    transition: color 0.5s;
+}
+
+.nav-link-wrapper:hover {
+    border-bottom: 1px solid black;
 
 
+}
+.nav-link-wrapper a:hover {
+    color: black;
+    
+
+}
+
+/* Portfolio style*/
+.portfolio-items-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.portfolio-items-wrapper {
+    position: relative;
+}
+
+.portfolio-img-background {
+    height: 300px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.img-text-wrapper {
+    position: absolute;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.logo-wrapper img{
+    width: 50%;
+    margin-bottom: 20px;
+}
+
+.img-text-wrapper .subtitle {
+    transition: 1s;
+    font-weight: 600;
+    color: transparent;
+}
+
+.img-text-wrapper:hover .subtitle  {
+    font-weight: 600;
+    color: lightseagreen;
+}
+.img-darken {
+    transition: 1s;
+    filter: brightness(10%);
+}
+
+```
