@@ -219,3 +219,78 @@ The finished index.html code and styles.css code should look like the below at t
 ```
 * * *  
 
+**Adding styles to the home page**
+
+- The first thing we're going to do to build out the portfolio body is to add styles to the `body`.
+	- `margin: 0`. This reduces the margin of the body to 0.
+- CSS grid will be used next. CSS grid gives you the tools to align-items. We will apply these styles to the container class
+	- `display: grid;`
+	- `grid-template-columns: 1fr;`
+	- What we're saying above is, I want the container to use a grid, then I want you to create these template columns using `1fr`(fractional unit).
+- Returning to the index.html to add the portfolio items. 
+	- The first thing we do is create a `<div class="content-wrapper">`. Everything below the navbar will be in this `div`
+	- Next, `<div class="portfolio-items-wrapper">`. This will give us the ability to have one spot we can go to where the collection of portfolio items live.
+	- Next, `<div class="portfolio-item-wrapper">`. This is the wrapper for each singular project object on our page. 
+	- We will then add another `<div class="portfolio-img-background" style="background-image:url(<location to image>)"` under `portfolio-items-wrapper`, the div we just created simply holds the image we linked to. 
+	- Next, a `<div class="img-text-wrapper">` is created, with `<div class="logo-wrapper">` iside of it. This then has a `img src="<path to image>">` inside of it
+	- The following code is then copied and pasted for the number of portfolio items you need. 
+
+```
+                <div class="portfolio-item-wrapper">
+
+                    <div class="portfolio-img-background" style="background-image:url(images/portfolio1.jpg)"></div>   
+
+                    <div class="img-text-wrapper">
+                        <div class="logo-wrapper">
+                            <img src="images/logos/quip.png" alt="">
+                        </div>
+
+                        <div class="subtitle">
+                            This is portfolio item 3
+                        </div>
+                    </div>
+
+                </div>
+```
+
+- We will now edit the styles.css file. 
+- first we edit the `.portfolio-items-wrapper` class.
+	- `display: grid;`
+	- `grid-template-columns: 1fr 1fr 1fr;`
+- Next, edit the `portfolio-item-wrapper` class.
+	- `position: relative;`. What this allows us to have is more flexibility with how we position each one of the items inside of it. 
+- I then edit the `portfolio-img-background` class. 
+	-  `height: 300px;`- Setting the image height to 300 pixels
+	- `width: 100%`- filling out the image 100%
+	- `background-size: cover`- Allows all the images of different sizes to sit nicely next to each other. 
+	- `background-position: center;`
+	- `background-repeat: no-repeat;`
+- We now need to work with the text that is sitting just below our images. To do this we have to edit the `img-text-wrapper` class. 
+	- `position: absolute`- This is used as we are forcing the text to somewhere it usually would not be. 
+	- `top: 0:` - forces the items to be at the very top
+	- `display: flex` - All the elements inside the class are going to use flexbox
+	- `flex-direction: column` - We're putting the images into columns
+	- `justify-content: center`- This will align the images from left to right
+	- `align-items: center`- This will align from top to bottom.
+	- `height: 100%`- This allows it to take up the full parent height. 
+	- `text-align: center`- aligns the text to the center
+	- `padding-left: 100px` - Adds padding to the left
+	- `padding-right: 100px` - Adds padding to the right
+- Now we will do some work on styling the logo images. `logo-wrapper img` will be edited to do this.
+	- `width: 50%` - Reduces the width of the image
+	- `margin-bottom: 20px` - This moves the position up.
+- Next, the work on adding a fade animation to the tiles will begin. First we edit the `.img-text-wrapper .subtitle` class.
+	- `transition: 1s` - adds a one second transition. 
+	- `color: transparent` - This will make the text transparent and will be used with code later on to add animation.
+
+- Next we edit the `.img-text-wrapper:hover .subtitle ` class.
+	- `font-weight: 600` - Makes the font more bold
+	- `color:` used to change the colour of the font on the tiles
+- Next, we did an `img-darken` class. This hasn't been defined in our HTML yet, but will be used for the animation,
+	- `transtion: 1s` - Will add a one second transition
+	- `filter brightness(10&)` - 
+	- How will this class be used? We will use this class as a kind of special function. We're going to have our JavaScript dynamically add and remove this class when someone is hovering over the tiles. 
+- At this point all the styles for the home page are complete. We will still need to add some JavaScript for all of it to work and add to it for the about page. For now, however, that is all we will need. 
+
+
+
