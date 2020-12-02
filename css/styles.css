@@ -1,6 +1,8 @@
 /* Master Styles */
 body {
+    font-family: "Lato", sans-serif;
     margin: 0px;
+
 }
 
 .container {
@@ -49,6 +51,13 @@ body {
 
 }
 
+.active-nav-link {
+    border-bottom: 1px solid black;
+}
+
+.active-nav-link a {
+    color: black !important;
+}
 /* Portfolio style*/
 .portfolio-items-wrapper {
     display: grid;
@@ -98,4 +107,22 @@ body {
 .img-darken {
     transition: 1s;
     filter: brightness(10%);
+}
+
+/* About Page Style*/
+.two-column-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.profile-image-wrapper {
+    width: 100%;
+}
+
+.profile-content-wrapper {
+    padding: 30px;
+}
+
+.profile-content-wrapper h1 {
+    color: lightseagreen;
 }
